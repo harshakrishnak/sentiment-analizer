@@ -12,7 +12,7 @@ export interface AnalysisResult {
   };
 }
 
-const API_BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
+const API_BASE_URL = import.meta.env.VITE_API_URL ?? "";
 
 export async function analyzeText(text: string): Promise<AnalysisResult> {
   const response = await fetch(`${API_BASE_URL}/api/analyze`, {
@@ -29,4 +29,3 @@ export async function analyzeText(text: string): Promise<AnalysisResult> {
 
   return (await response.json()) as AnalysisResult;
 }
-

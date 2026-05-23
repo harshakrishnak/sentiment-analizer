@@ -1,6 +1,6 @@
 # Sentiment Analyzer
 
-A local full-stack web app that analyzes an English paragraph and returns an
+A full-stack web app that analyzes an English paragraph and returns an
 overall sentiment plus a numeric score breakdown.
 
 ![Sentiment Analyzer application preview](assets/sentiment-analyzer-preview.jpg)
@@ -41,6 +41,21 @@ npm run dev
 ```
 
 Open `http://localhost:5173`.
+
+## Deploy On Render
+
+The repository includes a `Dockerfile` and `render.yaml` blueprint for a
+single free Render web service. During deployment, Docker builds the React
+frontend and the FastAPI server serves both the application and API from the
+same public URL.
+
+1. In Render, create a new Blueprint from this GitHub repository.
+2. Confirm the `sentiment-analizer` free web service.
+3. Wait for deployment to complete, then open the generated `onrender.com`
+   URL.
+
+Free Render services can spin down while idle, so the first request after a
+period of inactivity can be slower.
 
 ## API
 

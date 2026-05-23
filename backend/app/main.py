@@ -1,5 +1,8 @@
+from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from .schemas import AnalyzeRequest, AnalyzeResponse
 from .sentiment import SentimentService
@@ -30,3 +33,7 @@ def health_check() -> dict[str, str]:
 def analyze_sentiment(request: AnalyzeRequest) -> AnalyzeResponse:
     return sentiment_service.analyze(request.text)
 
+
+frontend_dist = Path(__file__).resolve().parents[2] / "frontend" / "dist"
+if frontend_dist.exists():
+    app.mount("/", StaticFiles(directory=frontend_dist, html=True), name="frontend")
