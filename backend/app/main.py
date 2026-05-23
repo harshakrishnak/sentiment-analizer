@@ -2,6 +2,7 @@ from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from .schemas import AnalyzeRequest, AnalyzeResponse
@@ -36,4 +37,9 @@ def analyze_sentiment(request: AnalyzeRequest) -> AnalyzeResponse:
 
 frontend_dist = Path(__file__).resolve().parents[2] / "frontend" / "dist"
 if frontend_dist.exists():
-    app.mount("/", StaticFiles(directory=frontend_dist, html=True), name="frontend")
+    @app.get("/", include_in_schema=False)
+    def serve_frontend() -> FileResponse:
+        return FileResponse(frontend_dist / "index.html")
+
+
+    app.mount("/assets", StaticFiles(directory=frontend_dist / "assets"), name="assets")

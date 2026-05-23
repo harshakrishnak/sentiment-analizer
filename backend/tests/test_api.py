@@ -1,4 +1,5 @@
 from fastapi.testclient import TestClient
+import pytest
 
 from app.main import app
 
@@ -31,3 +32,12 @@ def test_analyze_rejects_blank_text() -> None:
 
     assert response.status_code == 422
 
+
+def test_serves_frontend_homepage_when_built_assets_exist() -> None:
+    response = client.get("/")
+
+    if response.status_code == 404:
+        pytest.skip("Frontend production assets have not been built.")
+
+    assert response.status_code == 200
+    assert "Sentiment Lens" in response.text
