@@ -1,7 +1,7 @@
-# Sentiment Analyzer
+[# Sentiment Analyzer
 
 A full-stack web app that analyzes an English paragraph and returns an
-overall sentiment plus a numeric score breakdown.
+overall sentiment plus a numeric score breakdown. demo - https://sentiment-analizer-m3pn.onrender.com
 
 ![Sentiment Analyzer application preview](assets/sentiment-analyzer-preview.jpg)
 
@@ -86,3 +86,4 @@ Example response:
 The `compound_score` is normalized from `-1` (most negative) to `1` (most
 positive). `confidence` is the absolute compound score for an easy strength
 indicator in this MVP; it is not a probabilistic model confidence.
+](https://sentiment-analizer-m3pn.onrender.com/)
